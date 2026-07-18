@@ -10,9 +10,15 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
         with: {python-version: '3.11', enable-cache: true}
-      - name: Install Linux Qt runtime
+      - name: Install Linux media and Qt runtime
         if: runner.os == 'Linux'
-        run: sudo apt-get update && sudo apt-get install -y libegl1 libgl1 libxkbcommon-x11-0
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg libegl1 libgl1 libxkbcommon-x11-0
+      - name: Install macOS media runtime
+        if: runner.os == 'macOS'
+        run: brew install ffmpeg
+      - name: Install Windows media runtime
+        if: runner.os == 'Windows'
+        run: choco install ffmpeg -y --no-progress
       - run: uv sync --extra dev --locked
       - run: uv run ruff check .
       - run: uv run ruff format --check .

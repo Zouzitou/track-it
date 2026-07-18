@@ -12,7 +12,7 @@ jobs:
       - run: New-Item -ItemType Directory -Force -Path dist | Out-Null
       - run: uv run cyclonedx-py environment --output-format JSON --output-file dist/track-it-sbom.json
       - run: ./scripts/build_windows.ps1
-      - uses: softprops/action-gh-release@v2
+      - uses: softprops/action-gh-release@v3
         with:
           prerelease: true
           files: |

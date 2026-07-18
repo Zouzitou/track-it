@@ -8,7 +8,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/add/materialsymbolsoutlined/add_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "e9532de2b9be01ce951e899e98ee673bb97acd574f0db118feb72fe074a1c376",
+      "local_sha256": "9ac592108d6e0e3940e542476884b728e9b6e300cabb687b1a6076a88add5a57",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -16,7 +16,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/ads_click/materialsymbolsoutlined/ads_click_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "eebabd17446ac49462306a09907bad5f8f06fd4b0ff9f39558f819de8e177933",
+      "local_sha256": "0c6e33e2cd72e926059b8bcd3264f66d390b0438f0f706aab0583239731af53a",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -24,7 +24,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/arrow_back/materialsymbolsoutlined/arrow_back_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "bf55d4c9579f814d48fc03045f1098b1eb4d2f86f479dcc82c18ef521b957e62",
+      "local_sha256": "1132b6fb703acdd85034fa9f383c2cd58717742aa419126723012cb87d9da7c9",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -32,7 +32,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/arrow_forward/materialsymbolsoutlined/arrow_forward_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "717c65e2e704a07b7b73e194b202858f52befbaa6dd363565a1d75d117c3a2aa",
+      "local_sha256": "f7ca352689ccbb4c710ec25deac9f9bc072d62b356b8667c2f6c1d0ce0508481",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -40,7 +40,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/brightness_auto/materialsymbolsoutlined/brightness_auto_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "ff2ed7a0aad986968aadb03069472236e7fade94892ae93cf0a6c5fc2569d1e7",
+      "local_sha256": "2452f10d9cd67626357d8b17efc9954ac8cc8c7828b01281a0246dfd9ccf506b",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -48,7 +48,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/brush/materialsymbolsoutlined/brush_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "812d629e12c7e2388ffc09b08d6a894e2d18a29c4746a991a4de43e3fe7e92f8",
+      "local_sha256": "664f13d3306726a178abdb0d744346e8de1d54bbdd828aa350efab5978dd0589",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -56,7 +56,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/bug_report/materialsymbolsoutlined/bug_report_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "b12e1d975fd2fed26578e3889f4cb2049c2e4d96a7f2660fd52528a47fcbf525",
+      "local_sha256": "36f4ea0510b08725f5eeabc13b013b5bf45d3adfe0f093d98e663fac5c07a0b9",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -64,7 +64,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/check_circle/materialsymbolsoutlined/check_circle_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "42bf0950bc12ecf7952a8c3be86e0131f225095a7dc6c824a659a13df442e373",
+      "local_sha256": "df04737d16e4184760982eb9d6cfc8f0d5efd12a4af53b140ae0c74924b94001",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -72,7 +72,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/close/materialsymbolsoutlined/close_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "a82592b0faa0b104a4d4b0530bb05c6a4bfed5728f5aad03ae8e7a19f32b5511",
+      "local_sha256": "fd16bdddc20e3dc7efb41afa11dbf7315738ab23491e8e9624ca07706e2f3e2c",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -80,7 +80,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/content_cut/materialsymbolsoutlined/content_cut_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "5812907014f1324073bc08eb73361951d381541f49dc9a77d8128814fa2b56ba",
+      "local_sha256": "cd4b38172de5c6419f92b4804638c5206c97ca7fa487a3a5ef507aee365f376f",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -88,7 +88,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/crop_free/materialsymbolsoutlined/crop_free_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "ebdc1db91a4b68659ab5e8a5b96870a73ddbea262056cf4b41565d442b0bb083",
+      "local_sha256": "b7b7f03ea45d905f97439a6c80694b936f49028a28b4c4259205a94a2511cf63",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -96,7 +96,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/dark_mode/materialsymbolsoutlined/dark_mode_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "b45f29f9b3268bb674a00c025b619292e36a86e6dc6b28851f954763d943eca7",
+      "local_sha256": "0568d387b700647dc2a6e5c3498526d6d5b52639b729f6c2fe3d2d6c8f445e13",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -104,7 +104,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/delete/materialsymbolsoutlined/delete_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "ec75e756af4e37a926a2f64ef8f59eac85276a658fc8a7aef0cc12c5e871e971",
+      "local_sha256": "dec0411bd8ed32c9862e2f827e4d2706f4661a292ea26bc2aeff81b0513a43ed",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -112,7 +112,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/do_not_disturb_on/materialsymbolsoutlined/do_not_disturb_on_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "f7975bf9ff92cee5e091b46d92c63d3d416730be39a3f3863029679135010330",
+      "local_sha256": "f3fca9b64fc9eb18e82145d52484217ce610f8ba3d3b58696b798676aaa66db4",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -120,7 +120,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/download/materialsymbolsoutlined/download_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "9a9ad266a87dbd92e0d263628d31f3b73b59ab2e0a06ad6a44ac4eafe32b056d",
+      "local_sha256": "13cbeb084e6056eeaf439eacad956f70a6104bf29c4501066974a25555136816",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -128,7 +128,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/edit/materialsymbolsoutlined/edit_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "f3f51206ef9bf7d34db55058aa6be3e4f307c2d749fb8071785c360a84fa1622",
+      "local_sha256": "600a60aca8e61adfc2ba804f5ec086f0203e725f5252ecd09d869c8c06a02350",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -136,7 +136,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/error/materialsymbolsoutlined/error_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "f02b30c23e0c004e47a128526ab417832b2fd475c4cfbcdfff58e9df8f6c30ab",
+      "local_sha256": "4fad8a6609c9677764829880d1ccc4aa8e93a91acd3cd64ad6bdf7e3e11e2f5f",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -144,7 +144,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/fast_forward/materialsymbolsoutlined/fast_forward_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "dd598f1aeaa5d64a0599ff272ee94892a4afb0260e45d4d7332727b55c719c1d",
+      "local_sha256": "6f471d74f11f3a03464f057c5f54ca96341d83a6451db0a61976fb32edb24c94",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -152,7 +152,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/fast_rewind/materialsymbolsoutlined/fast_rewind_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "e3b74aaa89e7336f448ab1ae27457c04b10061bac8ddc37dd6ac5b54760b28c3",
+      "local_sha256": "1d7ec6040ef8a3b6909992daec6d2ecb61712018cccb40a38f6ff1cda7d147fc",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -160,7 +160,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/fit_screen/materialsymbolsoutlined/fit_screen_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "2128c3f8d581a6d985f25498853ec36a82079c03766c5a55bfebaa3291be0a37",
+      "local_sha256": "daf5160e464a23688b955f0ea6de96a778a72fe1eb9d64d67c0c7ec750454fe9",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -168,7 +168,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/folder_open/materialsymbolsoutlined/folder_open_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "0bc856c7bb7bbd1b86b42b6a0c5d242d6759086c910f52e4a549139fb25d4f14",
+      "local_sha256": "6d10551fa941f384f2dd6f6b63ad97e2c06627751a63cc626a16c8ffcf5d4009",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -176,7 +176,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/help/materialsymbolsoutlined/help_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "9f2bdd969cefc5843f95ccbd560c4281b1eec87c78b68bd4daf694d19fc9c5f9",
+      "local_sha256": "683eff37edf822790cfc2b1cc9c6172b8ac8c0779ab2a6e504d17f3c6549d81d",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -184,7 +184,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/info/materialsymbolsoutlined/info_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "33c77c7a4f193445d0136b970ad4b5a80ba8cc340603465d4cb46a1f8abec4ec",
+      "local_sha256": "a09d3161de0a597b032a074adeb2bd6f46f38582d0207ff69ea6adef6b0605f3",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -192,7 +192,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/ink_eraser/materialsymbolsoutlined/ink_eraser_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "e6f688676d660255aae06da0e47faa0011bf6e5223be81e1295180d2f4cd8e33",
+      "local_sha256": "5d0ce07ff7c98130d7b2262e19ab76b1c0bb0cb08343920f2bc46fc44600c57d",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -200,7 +200,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/key/materialsymbolsoutlined/key_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "395a811db6f02319a9ad7ffffb2f34693fcbd5bd0e88ed519ac98e33c5e3de1c",
+      "local_sha256": "72c1ea8a6220db9ab80da28127c2a24683fc22a4e74c68ee3a7116aeef418026",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -208,7 +208,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/keyboard/materialsymbolsoutlined/keyboard_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "2c3e09a5bbc5122b64cb3c0d351708b94d6c68c68378ab2cd70d37c0426b2679",
+      "local_sha256": "dafa547ec39ed4f06ed1575de7fa14d206aa0ef7f0390a40c4c351933adb24fb",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -216,7 +216,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/layers/materialsymbolsoutlined/layers_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "8f4b5f4b1dd6b1bacb0f335342dabf1387fb6db0da155eb2b0aa2ee124c845a2",
+      "local_sha256": "6797787050ac719416e51636e3cd738a02ceb92b4077c58f3d033cefa9029909",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -224,7 +224,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/light_mode/materialsymbolsoutlined/light_mode_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "59f62df813e1b2c5c9db89088ea4489617f8c89d4ccd179f713b9d6938d82db5",
+      "local_sha256": "5c5b9efa70a0d3ee0f69ba720564d1883143f686da886557a75a2da9e0b7d294",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -232,7 +232,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/location_searching/materialsymbolsoutlined/location_searching_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "079b818ac52622fbc1f1e5d9210cbe5e00e0229ddf0517280a6c9fbe405acf25",
+      "local_sha256": "41c006887b12c4da96757ead6f03058eeb2aae03af7d69f27f181be02962026a",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -240,7 +240,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/memory/materialsymbolsoutlined/memory_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "f679f7c209e41a6cffa155f52624bfe86ffb2ec1b5afe6314252a83b94a4ad02",
+      "local_sha256": "14c5ebfdb070cc96a251dc95b3fdc02c3ef47924b300a841f46cfcfb5b6b0536",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -248,7 +248,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/pan_tool/materialsymbolsoutlined/pan_tool_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "b02569a0b7cd256a56e83e86e8076171a908d84448e78e4b20dbcac93a896c55",
+      "local_sha256": "92d473cb1f8b4c8dd8c3d02eac9ebef86e48c6d5358d184207383943e536c1fd",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -256,7 +256,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/pause/materialsymbolsoutlined/pause_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "ccd6c3a92f3c4f8b5b59e1e35ccbdd4fb27c5afed311abbee4225800f4c2e567",
+      "local_sha256": "3f8fd1b97c2b3921ec0edd48e43d485a725b7f6fd6efdacf3b2f9a287bd09a8e",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -264,7 +264,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/play_arrow/materialsymbolsoutlined/play_arrow_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "56b40dffbc6830b7b506f42e6f6e230189d52924bca018ae8ac8f99c4110cd85",
+      "local_sha256": "5f7da31227501fcd72285f15cc21cc6f52650db722c01c19b7beebebe539349e",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -272,7 +272,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/privacy_tip/materialsymbolsoutlined/privacy_tip_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "07010f8f94b350d35694a1c835c261223ad84e74ab6e5c74852c4874ae8d7c21",
+      "local_sha256": "6652324ab38d2f0ade13017ab21cdab69ec7db33a52ad09db4861b8d8ff93ed5",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -280,7 +280,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/redo/materialsymbolsoutlined/redo_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "840dbef868ae7c527bbf13a1bbb31b16b04eed24ce95ee33000c51d5157a4bca",
+      "local_sha256": "60a61d7ae9cdc4fa086bdac5405daf4e6822b5b73064272658aca71210fa5cb1",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -288,7 +288,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/restart_alt/materialsymbolsoutlined/restart_alt_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "3a6c6c3ebcfe7f5c4bdf85d3c67f50c557d69b49c409ed001177d818a396c18d",
+      "local_sha256": "f041b95e937b38a7947f226ceaaf36be0860de8f7f0230c0c59d9d92f70e6410",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -296,7 +296,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/save/materialsymbolsoutlined/save_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "3d34bab9e571f0fc0f840662d178377237f5906e87e8ff295dd04e07b8ceea35",
+      "local_sha256": "1778c6d1c98dd5ac8229a9b31919c084c1edf7e6ad7b5a8880ccb9c1adea271d",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -304,7 +304,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/save_as/materialsymbolsoutlined/save_as_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "09738c926deeff97b5b10418b540e3865f8599995b7ada1bceb90c25596f6ed0",
+      "local_sha256": "dcf6e73e7c6ae5491e2b64582ac3355e092a7fef6ac1b3abb460836f6c7fdf72",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -312,7 +312,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/settings/materialsymbolsoutlined/settings_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "6aebb4a88b40a5bf1ce378ca532e4a885aedc402a0574562c6ed4ded03360fd2",
+      "local_sha256": "24e25b8b7cd3de339ac83fbdcfa710e32cbb3b9fb16fea840362fe56e5680c97",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -320,7 +320,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/skip_next/materialsymbolsoutlined/skip_next_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "043ac2b0f01ad751daba27618d0989bc31355fc4e501a0fdb188037cf371e863",
+      "local_sha256": "ff23c6766efe2c245c91012008d580d90493a2e36ca3f20f7491657ddd0908f3",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -328,7 +328,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/skip_previous/materialsymbolsoutlined/skip_previous_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "cc7cac86889a050559d473b0be99dd4a333d933bdd49cea1144a4361a9487e13",
+      "local_sha256": "2f7a4eb92793c06e7be93e82c2a5498a0c2c7a0e539d7862e73ba8247a6dc8ef",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -336,7 +336,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/stop_circle/materialsymbolsoutlined/stop_circle_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "a85e1fe1f018e1777bf15c7f32c8395847a498fab0d41e1b27a10a7c026044bf",
+      "local_sha256": "ef2ab0c4433135c8ba4827a9558472bd05efbf184f96f7df6e2375c95203bf91",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -344,7 +344,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/swap_horiz/materialsymbolsoutlined/swap_horiz_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "482276da5c5bc5c4c7850431cf6e9ba153163d4782fe9b252c22afdb60070692",
+      "local_sha256": "9de1b029a629d2bc1e2c49fbf6c58e134b02476845caa1aa44ce9bb8bb9b1906",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -352,7 +352,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/tune/materialsymbolsoutlined/tune_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "b1a4320c966b3f7c421bf3dad47cabdb1ac8a18c1dfff1d8a51236beb2aa697e",
+      "local_sha256": "ecc237e916e567e8e8968556a0936471c9e9ac9f6c8beccd6d9f35008dc12b70",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -360,7 +360,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/undo/materialsymbolsoutlined/undo_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "ed40d5c1ea954d7bd5e292e744b315662252685374dc7a86ed5ad872014244be",
+      "local_sha256": "81446c507bca87db33283b8a3f596c9a48b74776fb86096eae616f3ab952f662",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -368,7 +368,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/upload_file/materialsymbolsoutlined/upload_file_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "6b9479d322be1b1e59aaf1c5b5b8032c0bb220a9a565457aaac5e92fc7d13634",
+      "local_sha256": "45b046391ee756dee8b5042c7655f3d358f5bbfd82324eb1087b0ce162168c92",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -376,7 +376,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/video_file/materialsymbolsoutlined/video_file_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "04af66e258dadea4057f5234015af997c7c25b944c53e746847635b850e88dab",
+      "local_sha256": "c54876e5bb92860d66e755b2dee8528c08c7d5c22afc530d6385b3dfe661618f",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -384,7 +384,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/visibility/materialsymbolsoutlined/visibility_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "07f07478fc58500ce05000c3b123cb95de57aad9b106b9cfa58720528ea09bd7",
+      "local_sha256": "71a316398249470d0ac2d75b333d79bc59e482ada5e97e0d88c2919fe9f044a1",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -392,7 +392,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/visibility_off/materialsymbolsoutlined/visibility_off_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "3e59e535535441d5965efcd76011d0d9fca1df3b1ac3a065d4ce0aa9d6df6a87",
+      "local_sha256": "fd1ba9a1529d8c1c9b8232ec6dddfee67f220b7559dcb6eabc5435ff3044f233",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -400,7 +400,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/warning/materialsymbolsoutlined/warning_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "0212c59cfa1e2da887b0b36c7d89886de94b019feaaba5c063ec8dc7d32be436",
+      "local_sha256": "2e7d973352407e2726563e31d61ba506d6948d6be353f97144a19dcaf63d6c4b",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -408,7 +408,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/zoom_in/materialsymbolsoutlined/zoom_in_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "4b2d46c3b2934b6b2689b1af13637a80bad0c29fd02dd4d9d0596609fbbd6fd2",
+      "local_sha256": "98656f437bd8d76862849be2ea7aa07b6b27d5fe5bfa4da74ec487d80d1e9889",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     },
     {
@@ -416,7 +416,7 @@
       "style": "materialsymbolsoutlined",
       "source_path": "symbols/web/zoom_out/materialsymbolsoutlined/zoom_out_24px.svg",
       "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
-      "local_sha256": "bf4874cb7bbc3ba05c94b60018c0fdd842df6e6e86f562cd2540116a7a9e1cd4",
+      "local_sha256": "29590c69f37bdc8e50e592090e81531d2298f02fba48f4e11d40e4153a8a7867",
       "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
     }
   ]

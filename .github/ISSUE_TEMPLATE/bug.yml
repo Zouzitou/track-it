@@ -1,0 +1,8 @@
+name: Bug report
+description: Report a reproducible Track it problem
+body:
+  - type: textarea
+    attributes: {label: What happened, description: Include steps and expected behavior without private media or paths.}
+    validations: {required: true}
+  - type: textarea
+    attributes: {label: Sanitized diagnostics, description: Paste redacted `python -m track_it diagnostics` output.}

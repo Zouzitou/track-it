@@ -1,0 +1,11 @@
+{
+  "policy": {
+    "denied": ["AGPL", "SSPL", "Non-Commercial", "No-Derivatives"],
+    "unknown_requires_review": true
+  },
+  "reviewed_direct_dependencies": [
+    "PySide6", "torch", "torchvision", "numpy", "scipy", "Pillow", "av", "pydantic",
+    "platformdirs", "httpx", "filelock", "psutil", "packaging", "huggingface-hub",
+    "safetensors", "einops", "hydra-core", "omegaconf", "tqdm", "zstandard", "xxhash", "rich"
+  ]
+}

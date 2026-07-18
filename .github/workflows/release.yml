@@ -1,0 +1,21 @@
+name: Release
+on: {push: {tags: ['v*']}}
+permissions: {contents: write}
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with: {python-version: '3.11'}
+      - run: uv sync --extra dev --locked
+      - run: New-Item -ItemType Directory -Force -Path dist | Out-Null
+      - run: uv run cyclonedx-py environment --output-format JSON --output-file dist/track-it-sbom.json
+      - run: ./scripts/build_windows.ps1
+      - uses: softprops/action-gh-release@v2
+        with:
+          prerelease: true
+          files: |
+            dist/TrackIt-windows-x64.zip
+            dist/TrackIt-windows-x64.zip.sha256
+            dist/track-it-sbom.json

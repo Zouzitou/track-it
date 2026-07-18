@@ -1,0 +1,423 @@
+{
+  "schema_version": 1,
+  "upstream": "https://github.com/google/material-design-icons",
+  "commit": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+  "icons": [
+    {
+      "name": "add",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/add/materialsymbolsoutlined/add_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "e9532de2b9be01ce951e899e98ee673bb97acd574f0db118feb72fe074a1c376",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "ads_click",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/ads_click/materialsymbolsoutlined/ads_click_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "eebabd17446ac49462306a09907bad5f8f06fd4b0ff9f39558f819de8e177933",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "arrow_back",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/arrow_back/materialsymbolsoutlined/arrow_back_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "bf55d4c9579f814d48fc03045f1098b1eb4d2f86f479dcc82c18ef521b957e62",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "arrow_forward",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/arrow_forward/materialsymbolsoutlined/arrow_forward_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "717c65e2e704a07b7b73e194b202858f52befbaa6dd363565a1d75d117c3a2aa",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "brightness_auto",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/brightness_auto/materialsymbolsoutlined/brightness_auto_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "ff2ed7a0aad986968aadb03069472236e7fade94892ae93cf0a6c5fc2569d1e7",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "brush",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/brush/materialsymbolsoutlined/brush_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "812d629e12c7e2388ffc09b08d6a894e2d18a29c4746a991a4de43e3fe7e92f8",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "bug_report",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/bug_report/materialsymbolsoutlined/bug_report_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "b12e1d975fd2fed26578e3889f4cb2049c2e4d96a7f2660fd52528a47fcbf525",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "check_circle",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/check_circle/materialsymbolsoutlined/check_circle_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "42bf0950bc12ecf7952a8c3be86e0131f225095a7dc6c824a659a13df442e373",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "close",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/close/materialsymbolsoutlined/close_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "a82592b0faa0b104a4d4b0530bb05c6a4bfed5728f5aad03ae8e7a19f32b5511",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "content_cut",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/content_cut/materialsymbolsoutlined/content_cut_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "5812907014f1324073bc08eb73361951d381541f49dc9a77d8128814fa2b56ba",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "crop_free",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/crop_free/materialsymbolsoutlined/crop_free_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "ebdc1db91a4b68659ab5e8a5b96870a73ddbea262056cf4b41565d442b0bb083",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "dark_mode",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/dark_mode/materialsymbolsoutlined/dark_mode_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "b45f29f9b3268bb674a00c025b619292e36a86e6dc6b28851f954763d943eca7",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "delete",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/delete/materialsymbolsoutlined/delete_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "ec75e756af4e37a926a2f64ef8f59eac85276a658fc8a7aef0cc12c5e871e971",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "do_not_disturb_on",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/do_not_disturb_on/materialsymbolsoutlined/do_not_disturb_on_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "f7975bf9ff92cee5e091b46d92c63d3d416730be39a3f3863029679135010330",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "download",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/download/materialsymbolsoutlined/download_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "9a9ad266a87dbd92e0d263628d31f3b73b59ab2e0a06ad6a44ac4eafe32b056d",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "edit",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/edit/materialsymbolsoutlined/edit_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "f3f51206ef9bf7d34db55058aa6be3e4f307c2d749fb8071785c360a84fa1622",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "error",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/error/materialsymbolsoutlined/error_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "f02b30c23e0c004e47a128526ab417832b2fd475c4cfbcdfff58e9df8f6c30ab",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "fast_forward",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/fast_forward/materialsymbolsoutlined/fast_forward_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "dd598f1aeaa5d64a0599ff272ee94892a4afb0260e45d4d7332727b55c719c1d",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "fast_rewind",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/fast_rewind/materialsymbolsoutlined/fast_rewind_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "e3b74aaa89e7336f448ab1ae27457c04b10061bac8ddc37dd6ac5b54760b28c3",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "fit_screen",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/fit_screen/materialsymbolsoutlined/fit_screen_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "2128c3f8d581a6d985f25498853ec36a82079c03766c5a55bfebaa3291be0a37",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "folder_open",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/folder_open/materialsymbolsoutlined/folder_open_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "0bc856c7bb7bbd1b86b42b6a0c5d242d6759086c910f52e4a549139fb25d4f14",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "help",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/help/materialsymbolsoutlined/help_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "9f2bdd969cefc5843f95ccbd560c4281b1eec87c78b68bd4daf694d19fc9c5f9",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "info",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/info/materialsymbolsoutlined/info_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "33c77c7a4f193445d0136b970ad4b5a80ba8cc340603465d4cb46a1f8abec4ec",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "ink_eraser",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/ink_eraser/materialsymbolsoutlined/ink_eraser_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "e6f688676d660255aae06da0e47faa0011bf6e5223be81e1295180d2f4cd8e33",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "key",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/key/materialsymbolsoutlined/key_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "395a811db6f02319a9ad7ffffb2f34693fcbd5bd0e88ed519ac98e33c5e3de1c",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "keyboard",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/keyboard/materialsymbolsoutlined/keyboard_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "2c3e09a5bbc5122b64cb3c0d351708b94d6c68c68378ab2cd70d37c0426b2679",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "layers",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/layers/materialsymbolsoutlined/layers_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "8f4b5f4b1dd6b1bacb0f335342dabf1387fb6db0da155eb2b0aa2ee124c845a2",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "light_mode",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/light_mode/materialsymbolsoutlined/light_mode_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "59f62df813e1b2c5c9db89088ea4489617f8c89d4ccd179f713b9d6938d82db5",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "location_searching",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/location_searching/materialsymbolsoutlined/location_searching_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "079b818ac52622fbc1f1e5d9210cbe5e00e0229ddf0517280a6c9fbe405acf25",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "memory",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/memory/materialsymbolsoutlined/memory_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "f679f7c209e41a6cffa155f52624bfe86ffb2ec1b5afe6314252a83b94a4ad02",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "pan_tool",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/pan_tool/materialsymbolsoutlined/pan_tool_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "b02569a0b7cd256a56e83e86e8076171a908d84448e78e4b20dbcac93a896c55",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "pause",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/pause/materialsymbolsoutlined/pause_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "ccd6c3a92f3c4f8b5b59e1e35ccbdd4fb27c5afed311abbee4225800f4c2e567",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "play_arrow",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/play_arrow/materialsymbolsoutlined/play_arrow_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "56b40dffbc6830b7b506f42e6f6e230189d52924bca018ae8ac8f99c4110cd85",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "privacy_tip",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/privacy_tip/materialsymbolsoutlined/privacy_tip_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "07010f8f94b350d35694a1c835c261223ad84e74ab6e5c74852c4874ae8d7c21",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "redo",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/redo/materialsymbolsoutlined/redo_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "840dbef868ae7c527bbf13a1bbb31b16b04eed24ce95ee33000c51d5157a4bca",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "restart_alt",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/restart_alt/materialsymbolsoutlined/restart_alt_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "3a6c6c3ebcfe7f5c4bdf85d3c67f50c557d69b49c409ed001177d818a396c18d",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "save",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/save/materialsymbolsoutlined/save_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "3d34bab9e571f0fc0f840662d178377237f5906e87e8ff295dd04e07b8ceea35",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "save_as",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/save_as/materialsymbolsoutlined/save_as_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "09738c926deeff97b5b10418b540e3865f8599995b7ada1bceb90c25596f6ed0",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "settings",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/settings/materialsymbolsoutlined/settings_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "6aebb4a88b40a5bf1ce378ca532e4a885aedc402a0574562c6ed4ded03360fd2",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "skip_next",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/skip_next/materialsymbolsoutlined/skip_next_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "043ac2b0f01ad751daba27618d0989bc31355fc4e501a0fdb188037cf371e863",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "skip_previous",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/skip_previous/materialsymbolsoutlined/skip_previous_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "cc7cac86889a050559d473b0be99dd4a333d933bdd49cea1144a4361a9487e13",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "stop_circle",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/stop_circle/materialsymbolsoutlined/stop_circle_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "a85e1fe1f018e1777bf15c7f32c8395847a498fab0d41e1b27a10a7c026044bf",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "swap_horiz",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/swap_horiz/materialsymbolsoutlined/swap_horiz_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "482276da5c5bc5c4c7850431cf6e9ba153163d4782fe9b252c22afdb60070692",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "tune",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/tune/materialsymbolsoutlined/tune_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "b1a4320c966b3f7c421bf3dad47cabdb1ac8a18c1dfff1d8a51236beb2aa697e",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "undo",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/undo/materialsymbolsoutlined/undo_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "ed40d5c1ea954d7bd5e292e744b315662252685374dc7a86ed5ad872014244be",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "upload_file",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/upload_file/materialsymbolsoutlined/upload_file_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "6b9479d322be1b1e59aaf1c5b5b8032c0bb220a9a565457aaac5e92fc7d13634",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "video_file",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/video_file/materialsymbolsoutlined/video_file_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "04af66e258dadea4057f5234015af997c7c25b944c53e746847635b850e88dab",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "visibility",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/visibility/materialsymbolsoutlined/visibility_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "07f07478fc58500ce05000c3b123cb95de57aad9b106b9cfa58720528ea09bd7",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "visibility_off",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/visibility_off/materialsymbolsoutlined/visibility_off_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "3e59e535535441d5965efcd76011d0d9fca1df3b1ac3a065d4ce0aa9d6df6a87",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "warning",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/warning/materialsymbolsoutlined/warning_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "0212c59cfa1e2da887b0b36c7d89886de94b019feaaba5c063ec8dc7d32be436",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "zoom_in",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/zoom_in/materialsymbolsoutlined/zoom_in_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "4b2d46c3b2934b6b2689b1af13637a80bad0c29fd02dd4d9d0596609fbbd6fd2",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    },
+    {
+      "name": "zoom_out",
+      "style": "materialsymbolsoutlined",
+      "source_path": "symbols/web/zoom_out/materialsymbolsoutlined/zoom_out_24px.svg",
+      "source_sha": "abd7f5c0e179c83f068c770650bd14ebac5d5a09",
+      "local_sha256": "bf4874cb7bbc3ba05c94b60018c0fdd842df6e6e86f562cd2540116a7a9e1cd4",
+      "use_location": "Track it menus, toolbars, dialogs, status, and workspace"
+    }
+  ]
+}

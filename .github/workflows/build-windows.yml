@@ -1,0 +1,14 @@
+name: Windows portable
+on: {workflow_dispatch: {}, push: {tags: ['v*']}}
+permissions: {contents: read}
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with: {python-version: '3.11'}
+      - run: uv sync --extra dev --locked
+      - run: ./scripts/build_windows.ps1
+      - uses: actions/upload-artifact@v4
+        with: {name: TrackIt-windows-x64, path: 'dist/TrackIt-windows-x64.zip*'}

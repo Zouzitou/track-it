@@ -1,0 +1,13 @@
+name: Licenses and manifests
+on: [push, pull_request]
+permissions: {contents: read}
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with: {python-version: '3.11'}
+      - run: uv sync --extra dev --locked
+      - run: uv run python scripts/verify_manifests.py
+      - run: uv run pip-audit --ignore-vuln PYSEC-2025-194 --ignore-vuln PYSEC-2026-3447

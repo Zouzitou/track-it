@@ -1,0 +1,11 @@
+{
+  "retrieved_at": "2026-07-18T21:35:52.5835599Z",
+  "upstreams": {
+    "sam2": {"url": "https://github.com/facebookresearch/sam2", "commit": "2b90b9f5ceec907a1c18123530e92e794ad901a4", "license": "Apache-2.0", "selected_files": []},
+    "cutie": {"url": "https://github.com/hkchengrex/Cutie", "commit": "ec5cdd4cf16f75c73ad785a2f96fb97dbad4125a", "license": "MIT", "selected_files": []},
+    "material_symbols": {"url": "https://github.com/google/material-design-icons", "commit": "abd7f5c0e179c83f068c770650bd14ebac5d5a09", "license": "Apache-2.0", "selected_files": ["symbols/web/*/materialsymbolsoutlined/*_24px.svg", "LICENSE"]},
+    "host_grotesk_source": {"url": "https://github.com/Element-Type/HostGrotesk", "commit": "ab2ba6769119e7ae71aa2fab46eedcb993c670a3", "license": "OFL-1.1", "selected_files": ["OFL.txt"]},
+    "host_grotesk_distribution": {"url": "https://github.com/google/fonts", "commit": "389b770410cc0b7c21c85673bfa2077420fe7f65", "license": "OFL-1.1", "selected_files": ["ofl/hostgrotesk/HostGrotesk[wght].ttf", "ofl/hostgrotesk/OFL.txt"]},
+    "jetbrains_mono": {"url": "https://github.com/JetBrains/JetBrainsMono", "commit": "19371302b95d218af43299bce79ddbddd0bc364d", "license": "OFL-1.1", "selected_files": ["fonts/ttf/JetBrainsMono-Medium.ttf", "OFL.txt"]}
+  }
+}

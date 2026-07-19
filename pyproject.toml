@@ -73,7 +73,7 @@ module = ["av.*", "scipy.*", "zstandard.*", "sam2.*"]
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
-addopts = "--strict-markers --strict-config --timeout=30"
+addopts = "--strict-markers --strict-config --timeout=30 --basetemp=.tmp/pytest"
 testpaths = ["tests"]
 markers = ["integration: integration tests", "ui: Qt UI tests", "sam2: real SAM 2 test"]
 

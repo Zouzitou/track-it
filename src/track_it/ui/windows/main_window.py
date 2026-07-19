@@ -2,21 +2,28 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from pathlib import Path
-from typing import cast
+from typing import Any, cast
 
 import av
-from PySide6.QtCore import QSettings, Qt, QThread
-from PySide6.QtGui import QAction, QCloseEvent, QImage, QKeySequence
+from PySide6.QtCore import QSettings, Qt, QThread, QUrl
+from PySide6.QtGui import (
+    QAction,
+    QCloseEvent,
+    QDesktopServices,
+    QDragEnterEvent,
+    QDropEvent,
+    QImage,
+    QKeySequence,
+)
 from PySide6.QtWidgets import (
     QFileDialog,
     QFrame,
     QHBoxLayout,
     QLabel,
-    QListWidget,
     QMainWindow,
     QMessageBox,
+    QProgressBar,
     QPushButton,
-    QSplitter,
     QStatusBar,
     QToolButton,
     QVBoxLayout,
@@ -24,11 +31,16 @@ from PySide6.QtWidgets import (
 )
 
 from track_it.domain.models import FrameRecord, VideoMetadata
+from track_it.export.green_screen import (
+    SUPPORTED_VIDEO_SUFFIXES,
+    GreenScreenProcessor,
+    GreenScreenResult,
+    suggested_output_path,
+)
 from track_it.media.index import index_video
 from track_it.ui.icons.provider import MaterialIconProvider
 from track_it.ui.theme.manager import ThemeManager
 from track_it.ui.widgets.canvas import VideoCanvas
-from track_it.ui.widgets.timeline import TimelineWidget
 from track_it.utils.cancellation import CancellationToken
 from track_it.workers.base import JobWorker
 
@@ -40,10 +52,15 @@ class MainWindow(QMainWindow):
         self.icons = MaterialIconProvider()
         self.settings = QSettings()
         self._threads: set[QThread] = set()
+        self._workers: set[JobWorker] = set()
+        self._active_worker: JobWorker | None = None
+        self._close_requested = False
         self._video_path: Path | None = None
-        self.setWindowTitle("Track it — Untitled")
-        self.setMinimumSize(1100, 700)
-        self.resize(1440, 900)
+        self._output_path: Path | None = None
+        self.setWindowTitle("Track it — Green screen maker")
+        self.setMinimumSize(900, 620)
+        self.resize(1120, 720)
+        self.setAcceptDrops(True)
         self._build_actions()
         self._build_menu()
         self._build_ui()
@@ -52,191 +69,179 @@ class MainWindow(QMainWindow):
         self._theme_changed(self.theme.effective, self.theme.revision)
 
     def _build_actions(self) -> None:
-        self.open_action = QAction("Import video", self)
+        self.open_action = QAction("Choose clip…", self)
         self.open_action.setShortcut(QKeySequence.StandardKey.Open)
         self.open_action.triggered.connect(self.import_video)
         self.theme_action = QAction("Switch theme", self)
         self.theme_action.triggered.connect(self.theme.toggle)
-        self.export_action = QAction("Export", self)
-        self.export_action.setEnabled(False)
-        self.export_action.triggered.connect(self._export_explained)
+        self.create_action = QAction("Create green screen…", self)
+        self.create_action.setEnabled(False)
+        self.create_action.triggered.connect(self.create_green_screen)
+        self.export_action = self.create_action
 
     def _build_menu(self) -> None:
         file_menu = self.menuBar().addMenu("&File")
         file_menu.addAction(self.open_action)
-        file_menu.addAction(self.export_action)
+        file_menu.addAction(self.create_action)
         file_menu.addSeparator()
         file_menu.addAction("E&xit", self.close)
-        edit_menu = self.menuBar().addMenu("&Edit")
-        undo_action = QAction("Undo", self)
-        undo_action.setShortcut(QKeySequence.StandardKey.Undo)
-        undo_action.setEnabled(False)
-        edit_menu.addAction(undo_action)
         view_menu = self.menuBar().addMenu("&View")
         view_menu.addAction(self.theme_action)
         help_menu = self.menuBar().addMenu("&Help")
-        help_menu.addAction("Open diagnostics", self._show_diagnostics)
+        help_menu.addAction("Diagnostics", self._show_diagnostics)
         help_menu.addAction("About Track it", self._about)
 
-    def _button(
-        self, icon: str, text: str, tooltip: str, *, checkable: bool = False
-    ) -> QToolButton:
+    def _button(self, icon: str, text: str, tooltip: str) -> QToolButton:
         button = QToolButton()
         button.setText(text)
         button.setToolTip(tooltip)
-        button.setAccessibleName(text or tooltip.split("(", 1)[0].split("·", 1)[0].strip())
-        button.setCheckable(checkable)
-        button.setToolButtonStyle(
-            Qt.ToolButtonStyle.ToolButtonTextUnderIcon
-            if not text
-            else Qt.ToolButtonStyle.ToolButtonTextBesideIcon
-        )
-        button.setMinimumSize(44, 44)
+        button.setAccessibleName(text or tooltip)
+        button.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonTextBesideIcon)
+        button.setMinimumSize(42, 42)
         button.setProperty("iconName", icon)
         return button
 
     def _build_ui(self) -> None:
         root = QWidget()
         outer = QVBoxLayout(root)
-        outer.setContentsMargins(0, 0, 0, 0)
-        outer.setSpacing(0)
+        outer.setContentsMargins(28, 20, 28, 24)
+        outer.setSpacing(20)
 
-        header = QWidget()
-        header.setFixedHeight(52)
-        header_layout = QHBoxLayout(header)
-        header_layout.setContentsMargins(12, 4, 12, 4)
-        import_button = self._button("folder_open", "Import video", "Import video (Ctrl+O)")
-        import_button.clicked.connect(self.import_video)
-        self.project_title = QLabel("UNTITLED WORKBENCH")
-        self.project_title.setObjectName("panelTitle")
-        header_layout.addWidget(import_button)
-        header_layout.addWidget(self.project_title)
-        header_layout.addStretch()
-        self.model_label = QLabel("SAM 2.1 Small • model not downloaded")
-        self.model_label.setObjectName("secondary")
-        header_layout.addWidget(self.model_label)
-        self.theme_button = self._button("light_mode", "", "Use light theme · Theme settings")
+        header = QHBoxLayout()
+        brand = QVBoxLayout()
+        brand.setSpacing(0)
+        title = QLabel("Track it")
+        title.setObjectName("brandTitle")
+        subtitle = QLabel("Turn any clip into a green-screen video")
+        subtitle.setObjectName("secondary")
+        brand.addWidget(title)
+        brand.addWidget(subtitle)
+        header.addLayout(brand)
+        header.addStretch()
+        local = QLabel("100% local  •  no uploads")
+        local.setObjectName("privacyPill")
+        header.addWidget(local)
+        self.theme_button = self._button("light_mode", "", "Switch color theme")
+        self.theme_button.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonIconOnly)
         self.theme_button.clicked.connect(self.theme.toggle)
-        header_layout.addWidget(self.theme_button)
-        export_button = self._button("upload_file", "Export", "Export masks or motion data")
-        export_button.clicked.connect(self._export_explained)
-        header_layout.addWidget(export_button)
-        outer.addWidget(header)
+        header.addWidget(self.theme_button)
+        outer.addLayout(header)
 
-        workspace_split = QSplitter(Qt.Orientation.Horizontal)
-        left = QFrame()
-        left.setFixedWidth(56)
-        tool_layout = QVBoxLayout(left)
-        tool_layout.setContentsMargins(4, 8, 4, 8)
-        tool_layout.setSpacing(8)
-        self.tool_buttons: list[QToolButton] = []
-        for icon, name, tip in (
-            ("ads_click", "Add", "Add to selection"),
-            ("do_not_disturb_on", "Remove", "Remove from selection (Alt+click)"),
-            ("crop_free", "Box", "Box prompt"),
-            ("brush", "Brush", "Add-mask brush"),
-            ("ink_eraser", "Erase", "Erase-mask brush"),
-            ("pan_tool", "Pan", "Pan canvas"),
-        ):
-            button = self._button(icon, "", tip, checkable=True)
-            button.setAccessibleName(name)
-            button.setFixedSize(48, 48)
-            tool_layout.addWidget(button)
-            self.tool_buttons.append(button)
-        self.tool_buttons[0].setChecked(True)
-        tool_layout.addStretch()
+        step_row = QHBoxLayout()
+        step_row.setSpacing(8)
+        self.step_labels: list[QLabel] = []
+        for number, text in ((1, "Choose clip"), (2, "Create"), (3, "Done")):
+            label = QLabel(f"{number}  {text}")
+            label.setObjectName("activeStep" if number == 1 else "step")
+            label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            step_row.addWidget(label)
+            self.step_labels.append(label)
+        outer.addLayout(step_row)
 
-        center = QWidget()
-        center_layout = QVBoxLayout(center)
-        center_layout.setContentsMargins(0, 0, 0, 0)
-        center_layout.setSpacing(0)
+        content = QHBoxLayout()
+        content.setSpacing(24)
+        preview_card = QFrame()
+        preview_card.setObjectName("previewCard")
+        preview_layout = QVBoxLayout(preview_card)
+        preview_layout.setContentsMargins(10, 10, 10, 10)
         self.canvas = VideoCanvas(self.theme.colors)
-        center_layout.addWidget(self.canvas, 1)
-        transport = QWidget()
-        transport.setFixedHeight(48)
-        transport_layout = QHBoxLayout(transport)
-        transport_layout.setContentsMargins(12, 2, 12, 2)
-        for icon, text, tip in (
-            ("skip_previous", "", "Previous frame (Left)"),
-            ("play_arrow", "", "Play or pause (Space)"),
-            ("skip_next", "", "Next frame (Right)"),
-            ("arrow_back", "Track backward", "Track backward"),
-            ("arrow_forward", "Track forward", "Track forward"),
-            ("swap_horiz", "Track both ways", "Track both ways"),
-            ("stop_circle", "Stop", "Stop tracking"),
-        ):
-            button = self._button(icon, text, tip)
-            if text.startswith("Track") or text == "Stop":
-                button.setEnabled(False)
-            transport_layout.addWidget(button)
-        transport_layout.addStretch()
-        self.timecode = QLabel("00:00:00.000  •  F 00000001")
-        self.timecode.setFont(self.theme.data_font())
-        transport_layout.addWidget(self.timecode)
-        center_layout.addWidget(transport)
+        preview_layout.addWidget(self.canvas, 1)
+        content.addWidget(preview_card, 3)
 
-        inspector = QWidget()
-        inspector.setMinimumWidth(280)
-        inspector.setMaximumWidth(460)
-        inspector_layout = QVBoxLayout(inspector)
-        inspector_layout.setContentsMargins(16, 16, 16, 16)
-        title = QLabel("OBJECTS & MASK")
-        title.setObjectName("panelTitle")
-        inspector_layout.addWidget(title)
-        self.objects = QListWidget()
-        self.objects.setAccessibleName("Tracked objects")
-        self.objects.addItem("Objects appear here after you select and accept a subject.")
-        inspector_layout.addWidget(self.objects)
-        add_object = QPushButton("Add object")
-        add_object.clicked.connect(self._add_object)
-        inspector_layout.addWidget(add_object)
-        onion = self._button(
-            "layers", "Onion skin", "Show previous and next mask edges", checkable=True
+        controls = QFrame()
+        controls.setObjectName("controlCard")
+        controls.setMinimumWidth(330)
+        controls.setMaximumWidth(410)
+        controls_layout = QVBoxLayout(controls)
+        controls_layout.setContentsMargins(28, 28, 28, 28)
+        controls_layout.setSpacing(14)
+        self.project_title = QLabel("Drop your clip here")
+        self.project_title.setObjectName("panelTitle")
+        self.project_title.setWordWrap(True)
+        controls_layout.addWidget(self.project_title)
+        self.clip_details = QLabel(
+            "MP4, MOV, MKV, AVI, WebM, or M4V\n\nTrack it automatically finds the main subject."
         )
-        onion.setChecked(True)
-        onion.toggled.connect(self._toggle_echo)
-        inspector_layout.addWidget(onion)
-        inspector_layout.addStretch()
+        self.clip_details.setObjectName("secondary")
+        self.clip_details.setWordWrap(True)
+        controls_layout.addWidget(self.clip_details)
 
-        workspace_split.addWidget(left)
-        workspace_split.addWidget(center)
-        workspace_split.addWidget(inspector)
-        workspace_split.setSizes([56, 1000, 320])
+        self.choose_button = QPushButton("Choose a clip")
+        self.choose_button.setObjectName("secondaryButton")
+        self.choose_button.setMinimumHeight(48)
+        self.choose_button.clicked.connect(self.import_video)
+        controls_layout.addWidget(self.choose_button)
 
-        vertical = QSplitter(Qt.Orientation.Vertical)
-        vertical.addWidget(workspace_split)
-        self.timeline = TimelineWidget(self.theme.colors)
-        vertical.addWidget(self.timeline)
-        vertical.setSizes([620, 196])
-        self.workspace_split = workspace_split
-        self.vertical_split = vertical
-        outer.addWidget(vertical, 1)
+        self.create_button = QPushButton("Create green screen")
+        self.create_button.setObjectName("primaryButton")
+        self.create_button.setAccessibleDescription(
+            "Automatically isolate the main subject and save an MP4 with a green background"
+        )
+        self.create_button.setMinimumHeight(56)
+        self.create_button.setEnabled(False)
+        self.create_button.clicked.connect(self.create_green_screen)
+        controls_layout.addWidget(self.create_button)
+
+        self.progress = QProgressBar()
+        self.progress.setRange(0, 5)
+        self.progress.setValue(0)
+        self.progress.setTextVisible(False)
+        self.progress.hide()
+        controls_layout.addWidget(self.progress)
+        self.operation = QLabel("Ready when you are")
+        self.operation.setObjectName("statusText")
+        self.operation.setWordWrap(True)
+        controls_layout.addWidget(self.operation)
+
+        self.cancel_button = QPushButton("Cancel")
+        self.cancel_button.clicked.connect(self.cancel_processing)
+        self.cancel_button.hide()
+        controls_layout.addWidget(self.cancel_button)
+
+        self.open_folder_button = QPushButton("Show finished video")
+        self.open_folder_button.setMinimumHeight(44)
+        self.open_folder_button.clicked.connect(self.open_output_folder)
+        self.open_folder_button.hide()
+        controls_layout.addWidget(self.open_folder_button)
+        controls_layout.addStretch()
+
+        first_run = QLabel(
+            "First use downloads a verified 176 MB AI model. Processing stays on this computer."
+        )
+        first_run.setObjectName("finePrint")
+        first_run.setWordWrap(True)
+        controls_layout.addWidget(first_run)
+        content.addWidget(controls, 2)
+        outer.addLayout(content, 1)
         self.setCentralWidget(root)
 
         status = QStatusBar()
-        status.setFixedHeight(28)
-        self.operation = QLabel("Ready")
-        status.addWidget(QLabel("SAM 2 • Small • CUDA • 8 GB"))
-        status.addPermanentWidget(self.operation, 1)
-        privacy = QLabel("Local only")
-        privacy.setAccessibleDescription("Videos and tracking data are never uploaded")
-        status.addPermanentWidget(privacy)
+        status.setFixedHeight(26)
+        status.showMessage("Tip: you can drag and drop a video anywhere in this window")
         self.setStatusBar(status)
 
     def import_video(self) -> None:
         filename, _ = QFileDialog.getOpenFileName(
-            self, "Import video", "", "Video files (*.mp4 *.mov *.mkv *.avi *.webm);;All files (*)"
+            self,
+            "Choose a clip",
+            "",
+            "Video files (*.mp4 *.mov *.mkv *.avi *.webm *.m4v);;All files (*)",
         )
-        if not filename:
+        if filename:
+            self._begin_import(Path(filename))
+
+    def _begin_import(self, path: Path) -> None:
+        if path.suffix.lower() not in SUPPORTED_VIDEO_SUFFIXES:
+            QMessageBox.warning(
+                self, "That file is not a video", "Choose an MP4, MOV, MKV, AVI, WebM, or M4V clip."
+            )
             return
-        path = Path(filename)
-        self.operation.setText("Indexing video…")
-        self.open_action.setEnabled(False)
+        self._set_busy(True, "Reading your clip…", cancellable=False)
 
         def job(
             _token: CancellationToken, progress: Callable[[int, int, str], None]
         ) -> tuple[VideoMetadata, list[FrameRecord], QImage]:
-            progress(0, 0, "Reading presentation timestamps")
+            progress(0, 0, "Reading your clip")
             metadata, records = index_video(path)
             with av.open(str(path)) as container:
                 frame = next(container.decode(video=metadata.stream_index))
@@ -250,52 +255,177 @@ class MainWindow(QMainWindow):
                 ).copy()
             return metadata, records, image
 
-        thread = QThread(self)
-        worker = JobWorker(job)
-        worker.moveToThread(thread)
-        thread.started.connect(worker.run)
-        worker.completed.connect(self._video_indexed)
-        worker.failed.connect(self._job_failed)
-        worker.finished.connect(thread.quit)
-        worker.finished.connect(worker.deleteLater)
-        thread.finished.connect(thread.deleteLater)
-        thread.finished.connect(lambda: self._threads.discard(thread))
-        self._threads.add(thread)
-        thread.start()
+        self._run_job(job, self._video_indexed, self._import_failed)
 
     def _video_indexed(self, result: object) -> None:
         metadata, records, image = cast(tuple[VideoMetadata, list[FrameRecord], QImage], result)
         self._video_path = Path(metadata.path)
-        self.project_title.setText(self._video_path.stem.upper())
-        self.setWindowTitle(f"Track it — {self._video_path.stem}")
+        self._output_path = None
+        self.project_title.setText(self._video_path.name)
+        duration = self._duration_text(metadata.duration)
+        self.clip_details.setText(
+            f"{metadata.display_width} x {metadata.display_height}  •  {duration}  •  "
+            f"{len(records):,} frames\n\nYour clip is ready. Track it will automatically use the main subject."
+        )
         self.canvas.set_frame(image)
-        self.timeline.set_frame_count(len(records))
-        self.export_action.setEnabled(True)
-        self.operation.setText(
-            f"Indexed {len(records):,} frames • {'VFR' if metadata.vfr else 'CFR'}"
-        )
-        self.open_action.setEnabled(True)
+        self.create_button.setEnabled(True)
+        self.create_action.setEnabled(True)
+        self.choose_button.setText("Choose a different clip")
+        self.operation.setText("Ready to create")
+        self.open_folder_button.hide()
+        self._set_step(2)
+        self._set_busy(False)
 
-    def _job_failed(self, message: str) -> None:
-        self.open_action.setEnabled(True)
-        self.operation.setText("Import failed")
-        QMessageBox.critical(self, "Video could not be opened", message)
-
-    def _add_object(self) -> None:
-        if self.objects.count() == 1 and self.objects.item(0).text().startswith("Objects appear"):
-            self.objects.clear()
-        self.objects.addItem(f"Subject {self.objects.count() + 1}  •  No mask on this frame")
-
-    def _toggle_echo(self, checked: bool) -> None:
-        self.canvas.echo_enabled = checked
-        self.canvas.update()
-
-    def _export_explained(self) -> None:
-        QMessageBox.information(
+    def create_green_screen(self) -> None:
+        if self._video_path is None:
+            return
+        default = suggested_output_path(self._video_path)
+        filename, _ = QFileDialog.getSaveFileName(
             self,
-            "Export",
-            "Open a saved project to export masks, transparent media, or motion data. Audio handling and output validation are shown before encoding.",
+            "Save your green-screen video",
+            str(default),
+            "MP4 video (*.mp4)",
         )
+        if not filename:
+            return
+        output = Path(filename)
+        if output.suffix.lower() != ".mp4":
+            output = output.with_suffix(".mp4")
+        self._start_green_screen(output)
+
+    def _start_green_screen(self, output: Path) -> None:
+        if self._video_path is None:
+            return
+        input_path = self._video_path
+        self._output_path = output
+        self._set_busy(True, "Starting…", cancellable=True)
+        self.progress.setRange(0, 5)
+        self.progress.setValue(0)
+        self.progress.show()
+
+        def job(
+            token: CancellationToken, progress: Callable[[int, int, str], None]
+        ) -> GreenScreenResult:
+            return GreenScreenProcessor().create(input_path, output, token, progress)
+
+        self._run_job(job, self._green_screen_ready, self._processing_failed)
+
+    def _run_job(
+        self,
+        job: Callable[[CancellationToken, Callable[[int, int, str], None]], Any],
+        completed: Callable[[object], None],
+        failed: Callable[[str], None],
+    ) -> None:
+        thread = QThread(self)
+        worker = JobWorker(job)
+        worker.moveToThread(thread)
+        thread.started.connect(worker.run)
+        worker.progress.connect(self._job_progress)
+        worker.completed.connect(completed)
+        worker.failed.connect(failed)
+        worker.finished.connect(thread.quit)
+        worker.finished.connect(worker.deleteLater)
+        worker.finished.connect(lambda: self._workers.discard(worker))
+        thread.finished.connect(thread.deleteLater)
+        thread.finished.connect(lambda: self._thread_finished(thread))
+        self._threads.add(thread)
+        self._workers.add(worker)
+        self._active_worker = worker
+        thread.start()
+
+    def _job_progress(self, done: int, total: int, message: str) -> None:
+        self.operation.setText(message)
+        if total > 0:
+            self.progress.setRange(0, total)
+            self.progress.setValue(done)
+        else:
+            self.progress.setRange(0, 0)
+
+    def _green_screen_ready(self, result: object) -> None:
+        created = cast(GreenScreenResult, result)
+        self._output_path = created.output_path
+        self.project_title.setText("Your green-screen video is ready")
+        self.clip_details.setText(
+            f"{created.output_path.name}\n\n{created.frame_count:,} frames processed locally."
+        )
+        self.operation.setText("Done — your original clip was not changed")
+        self.progress.setRange(0, 5)
+        self.progress.setValue(5)
+        self.open_folder_button.show()
+        self._set_step(3)
+        self._set_busy(False)
+
+    def _import_failed(self, message: str) -> None:
+        self.operation.setText("That clip could not be opened")
+        self._set_busy(False)
+        QMessageBox.critical(self, "Clip could not be opened", message)
+
+    def _processing_failed(self, message: str) -> None:
+        cancelled = "cancel" in message.lower()
+        self.operation.setText(
+            "Cancelled — your original clip was not changed"
+            if cancelled
+            else "Could not create the green-screen video"
+        )
+        self.progress.hide()
+        self._set_busy(False)
+        if not cancelled:
+            QMessageBox.critical(self, "Green-screen creation stopped", message)
+
+    def _set_busy(
+        self, busy: bool, message: str | None = None, *, cancellable: bool = False
+    ) -> None:
+        self.open_action.setEnabled(not busy)
+        self.choose_button.setEnabled(not busy)
+        self.create_button.setEnabled(not busy and self._video_path is not None)
+        self.create_action.setEnabled(not busy and self._video_path is not None)
+        self.cancel_button.setVisible(busy and cancellable)
+        if not busy:
+            self._active_worker = None
+        if message:
+            self.operation.setText(message)
+
+    def cancel_processing(self) -> None:
+        if self._active_worker is not None:
+            self._active_worker.token.cancel()
+            self.cancel_button.setEnabled(False)
+            self.operation.setText("Stopping safely…")
+
+    def _thread_finished(self, thread: QThread) -> None:
+        self._threads.discard(thread)
+        if self._close_requested and not self._threads:
+            self._close_requested = False
+            self.close()
+
+    def open_output_folder(self) -> None:
+        if self._output_path is not None:
+            QDesktopServices.openUrl(QUrl.fromLocalFile(str(self._output_path.parent)))
+
+    def dragEnterEvent(self, event: QDragEnterEvent) -> None:
+        paths = [Path(url.toLocalFile()) for url in event.mimeData().urls() if url.isLocalFile()]
+        if len(paths) == 1 and paths[0].suffix.lower() in SUPPORTED_VIDEO_SUFFIXES:
+            event.acceptProposedAction()
+
+    def dropEvent(self, event: QDropEvent) -> None:
+        paths = [Path(url.toLocalFile()) for url in event.mimeData().urls() if url.isLocalFile()]
+        if len(paths) == 1:
+            event.acceptProposedAction()
+            self._begin_import(paths[0])
+
+    def _set_step(self, active: int) -> None:
+        for index, label in enumerate(self.step_labels, start=1):
+            label.setObjectName(
+                "activeStep" if index == active else "completeStep" if index < active else "step"
+            )
+            label.style().unpolish(label)
+            label.style().polish(label)
+
+    @staticmethod
+    def _duration_text(seconds: float) -> str:
+        rounded = max(0, round(seconds))
+        minutes, secs = divmod(rounded, 60)
+        hours, minutes = divmod(minutes, 60)
+        return f"{hours}:{minutes:02d}:{secs:02d}" if hours else f"{minutes}:{secs:02d}"
 
     def _show_diagnostics(self) -> None:
         from track_it.diagnostics import collect_diagnostics
@@ -306,21 +436,18 @@ class MainWindow(QMainWindow):
         QMessageBox.about(
             self,
             "About Track it",
-            "Track it 0.1.0-alpha.1\nFree local AI masking and motion tracking.\nApache License 2.0",
+            "Track it 0.1.0-alpha.1\nAutomatic local green-screen video maker.\nApache License 2.0",
         )
 
     def _theme_changed(self, _effective: str, _revision: int) -> None:
         self.icons.clear()
         colors = self.theme.colors
         self.canvas.colors = colors
-        self.timeline.colors = colors
         self.theme_button.setProperty(
             "iconName", "light_mode" if self.theme.effective == "dark" else "dark_mode"
         )
         self.theme_button.setToolTip(
-            "Use light theme · Theme settings"
-            if self.theme.effective == "dark"
-            else "Use dark theme · Theme settings"
+            "Use light theme" if self.theme.effective == "dark" else "Use dark theme"
         )
         for button in self.findChildren(QToolButton):
             name = button.property("iconName")
@@ -335,34 +462,27 @@ class MainWindow(QMainWindow):
                     )
                 )
         self.canvas.update()
-        self.timeline.update()
 
     def _restore_layout(self) -> None:
-        geometry = self.settings.value("window/geometry")
-        state = self.settings.value("window/state")
+        geometry = self.settings.value("window/simple_geometry")
         if geometry:
             self.restoreGeometry(geometry)
-        if state:
-            self.restoreState(state)
-        horizontal = self.settings.value("window/horizontal_split")
-        vertical = self.settings.value("window/vertical_split")
-        if horizontal:
-            self.workspace_split.restoreState(horizontal)
-        if vertical:
-            self.vertical_split.restoreState(vertical)
 
     def closeEvent(self, event: QCloseEvent) -> None:
         if self._threads:
             answer = QMessageBox.question(
-                self, "Operation in progress", "Stop the current operation and close Track it?"
+                self,
+                "Operation in progress",
+                "Stop the current operation and close Track it?",
             )
             if answer != QMessageBox.StandardButton.Yes:
                 event.ignore()
                 return
-            for thread in self._threads:
-                thread.requestInterruption()
-        self.settings.setValue("window/geometry", self.saveGeometry())
-        self.settings.setValue("window/state", self.saveState())
-        self.settings.setValue("window/horizontal_split", self.workspace_split.saveState())
-        self.settings.setValue("window/vertical_split", self.vertical_split.saveState())
+            for worker in self._workers:
+                worker.token.cancel()
+            self._close_requested = True
+            self.operation.setText("Stopping safely before closing…")
+            event.ignore()
+            return
+        self.settings.setValue("window/simple_geometry", self.saveGeometry())
         event.accept()

@@ -6,6 +6,7 @@
 .nuget/
 .wix/
 .installer-test/
+install/
 build-debug/
 dist-debug/
 .tmp/

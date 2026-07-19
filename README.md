@@ -1,31 +1,32 @@
-# Track it — free local AI masking and motion tracking
+# Track it — turn a clip into a green-screen video
 
 [![Python 3.11](https://img.shields.io/badge/Python-3.11-blue)](https://www.python.org/)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue)](LICENSE)
 
-Track it is an open-source desktop tool for selecting any visible subject, propagating a
-pixel-level mask through video, correcting mistakes, and exporting both masks and motion
-data—all locally on your computer.
+Track it is an open-source desktop app with one simple job: drop in a clip and create an MP4
+with the main subject preserved over a bright green background. Subject detection, tracking,
+compositing, and audio handling happen locally on your computer.
 
 ![Track it dark workspace](docs/images/main-window-dark.png)
 
 ## Privacy and status
 
 There is no account, cloud inference, upload endpoint, telemetry, analytics SDK, advertising,
-or watermark. Network access occurs only when you explicitly download a model or update.
+or watermark. Pressing **Create green screen** downloads the verified AI model on first use;
+the screen discloses the 176 MB download before processing begins.
 
-The alpha implements PyAV timestamp indexing, VFR-aware project data, multiple independent
-mask stores, positive/negative points, boxes, brush-ready prompt storage, SAM 2.1 forward and
-reverse propagation, corrections, scene cuts, confidence, mask-derived transforms, PNG and
-motion-data exporters, light/dark/system themes, offline Material Symbols, and cancellation.
-SAM 2 weights are downloaded separately and never enter the repository or package.
+The simple workflow automatically samples the middle of the clip, chooses a prominent central
+subject with SAM 2.1, tracks it in both directions, paints pure green outside the mask, preserves
+audio, and saves an H.264 MP4. Work can be cancelled safely, the source clip is never overwritten,
+and temporary frames are removed after completion. SAM 2 weights are downloaded separately and
+never enter the repository or package.
 
 ## Requirements
 
 - Windows 10/11 x64 or Linux x86-64; experimental Apple Silicon MPS
 - Python 3.11 (3.12 is supported for source development)
 - FFmpeg and ffprobe on `PATH` for source installs; the Windows MSI bundles them
-- NVIDIA CUDA recommended; an RTX 4060 8 GB selects SAM 2.1 Small
+- The MSI uses CPU inference; a source environment with CUDA-enabled PyTorch can use NVIDIA GPUs
 
 ## Install and run
 
@@ -58,9 +59,10 @@ The CLI supports `python -m track_it diagnostics`, `self-test`, `models list`,
 
 ## Workflow
 
-Import a video, pause on a clear frame, add an object, place positive/negative points or a
-box, accept the candidate mask, track a selected range in either direction, correct bounded
-segments, inspect confidence and motion, then export masks, transparent media, or JSON/CSV.
+Drag a video into the window or choose one, select **Create green screen**, and choose where to
+save the result. Track it automatically finds and follows the main subject; there are no masks,
+objects, timelines, or tracking controls in the normal workflow. Clips work best when the main
+subject is clearly visible near the center around the middle of the video.
 
 See [architecture](docs/architecture.md), [project format](docs/project-format.md),
 [model management](docs/model-management.md), [export formats](docs/export-formats.md), and

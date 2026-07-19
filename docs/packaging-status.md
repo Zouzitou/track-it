@@ -24,10 +24,17 @@ fonts; their exact identities were confirmed by decompiling the MSI file table.
 The implementation machine was instructed not to use C: for project data. A non-registering MSI
 administrative image rooted on Z: passed before the final runtime-hardening rebuild; the final MSI
 then passed ICE table validation and direct packaged-runtime checks without another Windows
-Installer invocation. A full registered install/repair/upgrade/uninstall cycle should run in
-Windows Sandbox or a disposable CI VM before the draft release is made public. The MSI is not
-code-signed; production releases should use a trusted Authenticode certificate and timestamp
-service.
+Installer invocation. GitHub Actions run
+[29667508622](https://github.com/Zouzitou/track-it/actions/runs/29667508622) subsequently built a
+fresh MSI on a disposable Windows host and passed administrative extraction, packaged self-test,
+offscreen GUI launch, registered per-machine install, repair, uninstall, Start Menu shortcut,
+Add/Remove Programs registration, and user-data preservation checks. That hosted artifact contains
+2,640 files and has SHA-256
+`14f2682c4c5ad947a54b7bff5679cc6eaa26f9fb35faa35a7c77e208adf6301c`.
+
+An upgrade from a previously published Track it MSI remains untested because no earlier MSI exists
+with a production UpgradeCode. The MSI is not code-signed; production releases should use a
+trusted Authenticode certificate and timestamp service.
 
 The earlier Nuitka attempts are superseded. They failed in Torch optimizer analysis and did not
 produce a claimed artifact; PyInstaller was selected after its one-folder bundle passed the

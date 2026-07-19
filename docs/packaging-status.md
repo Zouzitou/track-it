@@ -1,19 +1,34 @@
-# Packaging verification status
+# Windows packaging status
 
-Windows standalone packaging was attempted twice on 2026-07-18 with Nuitka 2.8.10,
-Python 3.11.15, PySide6 6.11.1, and PyTorch 2.12.1+cu130.
+Track it now builds as a self-contained x64 Windows MSI using PyInstaller 6.21 one-folder
+output and WiX Toolset 6.0.2. The package includes the Python runtime, PySide6/Qt, CPU PyTorch,
+the pinned SAM 2 source package, offline UI assets, and a pinned FFmpeg 8.1.2 LGPL shared build.
+Model checkpoints remain a verified first-use download.
 
-The first attempt ran for 903 seconds and failed inside Nuitka's optimizer while analyzing
-`torch._dynamo.pgo` (`NuitkaOptimizationError: This statement does raise but didn't annotate an
-exception exit`). The compiler generated `nuitka-crash-report.xml`; that generated diagnostic is
-excluded from source control and contains local build paths.
+## Verified artifact
 
-The second attempt explicitly disabled Torch JIT and excluded unused `torch._dynamo`,
-`torch._inductor`, and `torch.distributed` modules. It remained active for 1,204 seconds without
-producing a completed executable and was terminated at the command's 20-minute ceiling; the
-remaining child compiler processes were verified by command line and stopped.
+- File: `Track-it-0.1.0-alpha.1-windows-x64.msi`
+- Size: 320,336,424 bytes (305.5 MiB)
+- SHA-256: `a356cba30ea817e5ea91f1a56402db787b9eef4c2fcf8a5612852cc0c490d9d5`
+- MSI ICE table validation: passed
+- MSI administrative extraction of the same installer authoring: passed
+- Final packaged self-test: passed
+- Bundled FFmpeg and ffprobe discovery: passed
+- Final packaged offscreen GUI launch: passed
+- Packaged runtime: 2,635 files
 
-No portable ZIP or checksum is claimed. The build script retains the narrowed workaround and
-strictly checks native exit codes. Release automation is configured to produce the artifact on a
-GitHub Windows runner; the prerelease must remain draft until that workflow completes and the
-packaged self-test passes.
+ICE validation reports two non-failing ICE60 warnings for the bundled Host Grotesk variable font
+and JetBrains Mono font. Both files are private application assets rather than system-installed
+fonts; their exact identities were confirmed by decompiling the MSI file table.
+
+The implementation machine was instructed not to use C: for project data. A non-registering MSI
+administrative image rooted on Z: passed before the final runtime-hardening rebuild; the final MSI
+then passed ICE table validation and direct packaged-runtime checks without another Windows
+Installer invocation. A full registered install/repair/upgrade/uninstall cycle should run in
+Windows Sandbox or a disposable CI VM before the draft release is made public. The MSI is not
+code-signed; production releases should use a trusted Authenticode certificate and timestamp
+service.
+
+The earlier Nuitka attempts are superseded. They failed in Torch optimizer analysis and did not
+produce a claimed artifact; PyInstaller was selected after its one-folder bundle passed the
+packaged runtime checks.

@@ -1,14 +1,19 @@
 from __future__ import annotations
 
 import json
+import os
+import subprocess
 from pathlib import Path
 
 import numpy as np
+import pytest
 from PIL import Image
 
+from track_it.errors import ExportProcessError
 from track_it.export.data import export_motion_csv, export_motion_json
 from track_it.export.images import deterministic_mask_name, export_mask_png, export_transparent_png
-from track_it.media.ffmpeg import ffv1_mask_argv
+from track_it.media import ffmpeg as ffmpeg_module
+from track_it.media.ffmpeg import ffv1_mask_argv, run_process
 from track_it.media.scenes import detect_scene_cuts
 from track_it.motion.transforms import derive_transform
 from track_it.utils.paths import safe_filename
@@ -46,3 +51,22 @@ def test_safe_names_and_argv_preserve_user_paths() -> None:
     output = Path("Z:/out & final.mkv")
     argv = ffv1_mask_argv("ffmpeg", path, output, 23.976, False)
     assert str(path) in argv and str(output) in argv
+
+
+def test_bundled_ffmpeg_takes_precedence(tmp_path: Path, monkeypatch) -> None:
+    tools = tmp_path / "ffmpeg"
+    tools.mkdir()
+    executable = tools / ("ffmpeg.exe" if os.name == "nt" else "ffmpeg")
+    executable.write_bytes(b"fixture")
+    monkeypatch.setattr(ffmpeg_module, "TOOLS_ROOT", tmp_path)
+    monkeypatch.setattr(ffmpeg_module.shutil, "which", lambda _name: "path-ffmpeg")
+    assert ffmpeg_module._find_executable("ffmpeg") == str(executable)
+
+
+def test_media_process_timeout_is_a_domain_error(monkeypatch) -> None:
+    def time_out(*args, **kwargs):
+        raise subprocess.TimeoutExpired(["ffprobe"], 1)
+
+    monkeypatch.setattr(ffmpeg_module.subprocess, "run", time_out)
+    with pytest.raises(ExportProcessError, match="timed out"):
+        run_process(["ffprobe"], timeout=1)

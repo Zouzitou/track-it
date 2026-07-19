@@ -24,10 +24,22 @@ SAM 2 weights are downloaded separately and never enter the repository or packag
 
 - Windows 10/11 x64 or Linux x86-64; experimental Apple Silicon MPS
 - Python 3.11 (3.12 is supported for source development)
-- FFmpeg and ffprobe on `PATH`
+- FFmpeg and ffprobe on `PATH` for source installs; the Windows MSI bundles them
 - NVIDIA CUDA recommended; an RTX 4060 8 GB selects SAM 2.1 Small
 
 ## Install and run
+
+### Windows MSI
+
+Download `Track-it-0.1.0-alpha.1-windows-x64.msi`, double-click it, accept the license,
+and choose an install folder. Setup installs a Start Menu shortcut and bundles Python,
+SAM 2, Qt, and an LGPL FFmpeg build; only the model weights are downloaded on first use.
+
+The alpha MSI is not yet code-signed, so Windows may show an unknown-publisher warning.
+See the [Windows installer guide](docs/windows-installer.md) and
+[packaging status](docs/packaging-status.md) for verification details and release limitations.
+
+### Source
 
 ```powershell
 ./scripts/bootstrap.ps1

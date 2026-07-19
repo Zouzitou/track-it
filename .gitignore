@@ -1,5 +1,13 @@
 .venv/
+.venv-package/
 .uv-cache/
+.tools/
+.dotnet/
+.nuget/
+.wix/
+.installer-test/
+build-debug/
+dist-debug/
 .tmp/
 .tmp-upstream/
 __pycache__/

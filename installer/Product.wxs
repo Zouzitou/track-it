@@ -1,0 +1,64 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+  <Package
+      Name="Track it"
+      Version="$(ProductVersion)"
+      Manufacturer="Track it Open Source"
+      Language="1033"
+      UpgradeCode="{84A505B1-1F32-47E1-A3A7-586E4920A309}"
+      Scope="perMachine"
+      InstallerVersion="500">
+
+    <SummaryInformation Description="Track it local video masking and motion tracking" />
+    <MajorUpgrade
+        DowngradeErrorMessage="A newer version of Track it is already installed."
+        Schedule="afterInstallInitialize" />
+    <MediaTemplate EmbedCab="yes" CompressionLevel="high" />
+
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="INSTALLFOLDER" Name="Track it" />
+    </StandardDirectory>
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="ApplicationProgramsFolder" Name="Track it" />
+    </StandardDirectory>
+
+    <Component
+        Id="TrackItApplication"
+        Directory="INSTALLFOLDER"
+        Guid="{7B7E874A-8012-440B-A173-4BAF7CE8D074}">
+      <File Id="TrackItExecutable" Source="!(bindpath.Payload)\TrackIt.exe" KeyPath="yes">
+        <Shortcut
+            Id="TrackItStartMenuShortcut"
+            Directory="ApplicationProgramsFolder"
+            Name="Track it"
+            Description="Local video masking and motion tracking"
+            WorkingDirectory="INSTALLFOLDER"
+            Icon="TrackIt.exe"
+            Advertise="yes" />
+      </File>
+      <RemoveFolder
+          Id="RemoveTrackItProgramMenu"
+          Directory="ApplicationProgramsFolder"
+          On="uninstall" />
+    </Component>
+
+    <Feature Id="MainFeature" Title="Track it" Level="1">
+      <Files Directory="INSTALLFOLDER" Include="!(bindpath.Payload)\**">
+        <Exclude Files="!(bindpath.Payload)\TrackIt.exe" />
+      </Files>
+      <ComponentRef Id="TrackItApplication" />
+    </Feature>
+
+    <Icon Id="TrackIt.exe" SourceFile="$(InstallerAssets)\track-it.ico" />
+    <Property Id="ARPPRODUCTICON" Value="TrackIt.exe" />
+    <Property Id="ARPURLINFOABOUT" Value="https://github.com/Zouzitou/track-it" />
+    <Property Id="ARPCONTACT" Value="https://github.com/Zouzitou/track-it/issues" />
+    <Property Id="MSIFASTINSTALL" Value="1" />
+
+    <ui:WixUI Id="WixUI_InstallDir" InstallDirectory="INSTALLFOLDER" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+    <WixVariable Id="WixUILicenseRtf" Value="$(InstallerAssets)\license.rtf" />
+    <WixVariable Id="WixUIBannerBmp" Value="$(InstallerAssets)\wix-banner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="$(InstallerAssets)\wix-dialog.bmp" />
+  </Package>
+</Wix>

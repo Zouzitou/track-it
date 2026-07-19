@@ -27,12 +27,12 @@ The implementation machine was instructed not to use C: for project data. A non-
 administrative image rooted on Z: passed before the final runtime-hardening rebuild; the final MSI
 then passed ICE table validation and direct packaged-runtime checks without another Windows
 Installer invocation. GitHub Actions run
-[29667508622](https://github.com/Zouzitou/track-it/actions/runs/29667508622) subsequently built a
-fresh MSI on a disposable Windows host and passed administrative extraction, packaged self-test,
-offscreen GUI launch, registered per-machine install, repair, uninstall, Start Menu shortcut,
-Add/Remove Programs registration, and user-data preservation checks. That hosted artifact contains
-2,640 files and has SHA-256
-`14f2682c4c5ad947a54b7bff5679cc6eaa26f9fb35faa35a7c77e208adf6301c`.
+[29678203674](https://github.com/Zouzitou/track-it/actions/runs/29678203674) built the simplified
+green-screen revision on a disposable Windows host and passed administrative extraction, packaged
+self-test, offscreen GUI launch, registered per-machine install, repair, uninstall, Start Menu
+shortcut, Add/Remove Programs registration, and user-data preservation checks. That hosted
+artifact contains 2,640 files and has SHA-256
+`e95cc05f02dbf099390510fed3d3b83f1d4f11994a1f0d7a7434419c11436c3b`.
 
 An upgrade from a previously published Track it MSI remains untested because no earlier MSI exists
 with a production UpgradeCode. The MSI is not code-signed; production releases should use a

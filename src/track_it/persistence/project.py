@@ -11,6 +11,8 @@ from track_it.persistence.atomic import atomic_write_text
 from track_it.persistence.migrations import migrate
 from track_it.utils.paths import ensure_project_suffix
 
+MAX_PROJECT_JSON_BYTES = 16 * 1024 * 1024
+
 
 class ProjectStore:
     def create_layout(self, root: Path) -> Path:
@@ -34,6 +36,8 @@ class ProjectStore:
             else "project.json"
         )
         try:
+            if path.stat().st_size > MAX_PROJECT_JSON_BYTES:
+                raise ValueError("Project metadata exceeds the safety limit")
             raw = path.read_text(encoding="utf-8")
             data = migrate(__import__("json").loads(raw))
             return ProjectModel.model_validate(data)

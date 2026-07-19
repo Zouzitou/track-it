@@ -22,8 +22,8 @@ class ModelSpec:
     filename: str
     url: str
     config: str
-    sha256: str | None
-    minimum_size: int
+    sha256: str
+    expected_size: int
     license: str
     vram_gb: int
     upstream_sha: str
@@ -34,8 +34,8 @@ SAM2_SMALL = ModelSpec(
     "sam2.1_hiera_small.pt",
     "https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_small.pt",
     "configs/sam2.1/sam2.1_hiera_s.yaml",
-    None,
-    150_000_000,
+    "6d1aa6f30de5c92224f8172114de081d104bbd23dd9dc5c58996f0cad5dc4d38",
+    184_416_285,
     "Apache-2.0",
     4,
     "2b90b9f5ceec907a1c18123530e92e794ad901a4",
@@ -63,16 +63,7 @@ class ModelManager:
 
     def verify(self, model_id: str) -> str:
         spec, path = MODELS[model_id], self.path_for(model_id)
-        if not path.exists() or path.stat().st_size < spec.minimum_size:
-            raise ModelIntegrityError(
-                "This model file failed verification. Delete it and download it again."
-            )
-        digest = _sha256(path)
-        if spec.sha256 and digest != spec.sha256:
-            raise ModelIntegrityError(
-                "This model file failed verification. Delete it and download it again."
-            )
-        return digest
+        return _verify_file(spec, path)
 
     def download(
         self,
@@ -84,28 +75,64 @@ class ModelManager:
         destination = self.path_for(model_id)
         partial = destination.with_suffix(destination.suffix + ".partial")
         with FileLock(str(destination) + ".lock"):
+            if partial.exists() and partial.stat().st_size > spec.expected_size:
+                partial.unlink()
             offset = partial.stat().st_size if partial.exists() else 0
-            headers = {"Range": f"bytes={offset}-"} if offset else {}
-            with httpx.stream(
-                "GET", spec.url, headers=headers, follow_redirects=True, timeout=60.0
-            ) as response:
-                response.raise_for_status()
-                mode = "ab" if offset and response.status_code == 206 else "wb"
-                if mode == "wb":
-                    offset = 0
-                total = offset + int(response.headers.get("content-length", 0))
-                with partial.open(mode) as handle:
-                    done = offset
-                    for chunk in response.iter_bytes(1024 * 1024):
-                        token.raise_if_cancelled()
-                        handle.write(chunk)
-                        done += len(chunk)
-                        if progress:
-                            progress(done, total)
-                    handle.flush()
-                    os.fsync(handle.fileno())
+            if offset < spec.expected_size:
+                headers = {"Range": f"bytes={offset}-"} if offset else {}
+                with httpx.stream(
+                    "GET", spec.url, headers=headers, follow_redirects=False, timeout=60.0
+                ) as response:
+                    response.raise_for_status()
+                    if response.status_code not in {200, 206}:
+                        raise ModelIntegrityError(
+                            "The model server returned an unexpected response."
+                        )
+                    if response.status_code == 206:
+                        expected_range = (
+                            f"bytes {offset}-{spec.expected_size - 1}/{spec.expected_size}"
+                        )
+                        if response.headers.get("content-range") != expected_range:
+                            raise ModelIntegrityError(
+                                "The model server returned an invalid resume range."
+                            )
+                    mode = "ab" if offset and response.status_code == 206 else "wb"
+                    if mode == "wb":
+                        offset = 0
+                    expected_response_size = spec.expected_size - offset
+                    response_size = response.headers.get("content-length")
+                    if response_size is not None:
+                        try:
+                            response_size_value = int(response_size)
+                        except ValueError as exc:
+                            raise ModelIntegrityError(
+                                "The model server returned an invalid file size."
+                            ) from exc
+                        if response_size_value != expected_response_size:
+                            raise ModelIntegrityError(
+                                "The model server returned an unexpected file size."
+                            )
+                    with partial.open(mode) as handle:
+                        done = offset
+                        for chunk in response.iter_bytes(1024 * 1024):
+                            token.raise_if_cancelled()
+                            handle.write(chunk)
+                            done += len(chunk)
+                            if done > spec.expected_size:
+                                raise ModelIntegrityError(
+                                    "The model download exceeded its expected size."
+                                )
+                            if progress:
+                                progress(done, spec.expected_size)
+                        handle.flush()
+                        os.fsync(handle.fileno())
+            try:
+                digest = _verify_file(spec, partial)
+            except ModelIntegrityError:
+                if partial.exists() and partial.stat().st_size == spec.expected_size:
+                    partial.unlink()
+                raise
             partial.replace(destination)
-            digest = self.verify(model_id)
             atomic_write_text(
                 self.root / f"{model_id}.json",
                 json.dumps(
@@ -122,3 +149,16 @@ def _sha256(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def _verify_file(spec: ModelSpec, path: Path) -> str:
+    if not path.is_file() or path.stat().st_size != spec.expected_size:
+        raise ModelIntegrityError(
+            "This model file failed verification. Delete it and download it again."
+        )
+    digest = _sha256(path)
+    if digest != spec.sha256:
+        raise ModelIntegrityError(
+            "This model file failed verification. Delete it and download it again."
+        )
+    return digest

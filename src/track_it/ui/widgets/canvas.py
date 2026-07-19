@@ -80,7 +80,7 @@ class VideoCanvas(QWidget):
             painter.drawText(
                 self.rect(),
                 Qt.AlignmentFlag.AlignCenter,
-                "Start with a video\n\nImport a video, pause on a clear frame,\nthen select the subject you want to track.",
+                "Drop a clip here\n\nYour video preview will appear here.",
             )
             return
         rect = self._frame_rect()

@@ -1,11 +1,12 @@
 {
-  "retrieved_at": "2026-07-18T21:35:52.5835599Z",
+  "retrieved_at": "2026-07-19T00:45:00Z",
   "upstreams": {
-    "sam2": {"url": "https://github.com/facebookresearch/sam2", "commit": "2b90b9f5ceec907a1c18123530e92e794ad901a4", "license": "Apache-2.0", "selected_files": []},
+    "sam2": {"url": "https://github.com/facebookresearch/sam2", "commit": "2b90b9f5ceec907a1c18123530e92e794ad901a4", "license": "Apache-2.0", "selected_files": [], "artifacts": [{"url": "https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_small.pt", "size": 184416285, "sha256": "6d1aa6f30de5c92224f8172114de081d104bbd23dd9dc5c58996f0cad5dc4d38"}]},
     "cutie": {"url": "https://github.com/hkchengrex/Cutie", "commit": "ec5cdd4cf16f75c73ad785a2f96fb97dbad4125a", "license": "MIT", "selected_files": []},
     "material_symbols": {"url": "https://github.com/google/material-design-icons", "commit": "abd7f5c0e179c83f068c770650bd14ebac5d5a09", "license": "Apache-2.0", "selected_files": ["symbols/web/*/materialsymbolsoutlined/*_24px.svg", "LICENSE"]},
     "host_grotesk_source": {"url": "https://github.com/Element-Type/HostGrotesk", "commit": "ab2ba6769119e7ae71aa2fab46eedcb993c670a3", "license": "OFL-1.1", "selected_files": ["OFL.txt"]},
     "host_grotesk_distribution": {"url": "https://github.com/google/fonts", "commit": "389b770410cc0b7c21c85673bfa2077420fe7f65", "license": "OFL-1.1", "selected_files": ["ofl/hostgrotesk/HostGrotesk[wght].ttf", "ofl/hostgrotesk/OFL.txt"]},
-    "jetbrains_mono": {"url": "https://github.com/JetBrains/JetBrainsMono", "commit": "19371302b95d218af43299bce79ddbddd0bc364d", "license": "OFL-1.1", "selected_files": ["fonts/ttf/JetBrainsMono-Medium.ttf", "OFL.txt"]}
+    "jetbrains_mono": {"url": "https://github.com/JetBrains/JetBrainsMono", "commit": "19371302b95d218af43299bce79ddbddd0bc364d", "license": "OFL-1.1", "selected_files": ["fonts/ttf/JetBrainsMono-Medium.ttf", "OFL.txt"]},
+    "ffmpeg_windows_build": {"url": "https://github.com/BtbN/FFmpeg-Builds", "commit": "928c1147c234f29a0479806e19c41d7d62ebce7e", "license": "LGPL-2.1-or-later", "selected_files": ["ffmpeg-n8.1.2-22-g94138f6973-win64-lgpl-shared-8.1.zip"]}
   }
 }

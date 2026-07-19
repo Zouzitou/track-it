@@ -4,18 +4,25 @@ permissions: {contents: write}
 jobs:
   windows:
     runs-on: windows-latest
+    timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+      - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
         with: {python-version: '3.11'}
       - run: uv sync --extra dev --locked
       - run: New-Item -ItemType Directory -Force -Path dist | Out-Null
       - run: uv run cyclonedx-py environment --output-format JSON --output-file dist/track-it-sbom.json
       - run: ./scripts/build_windows.ps1
-      - uses: softprops/action-gh-release@v2
+      - name: Test packaged MSI
+        shell: pwsh
+        run: |
+          $msi = Get-ChildItem dist/Track-it-*-windows-x64.msi | Select-Object -First 1
+          if (-not $msi) { throw "Built MSI was not found" }
+          ./scripts/test_windows_msi.ps1 -MsiPath $msi.FullName -RegisteredCycle
+      - uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # v3
         with:
           prerelease: true
           files: |
-            dist/TrackIt-windows-x64.zip
-            dist/TrackIt-windows-x64.zip.sha256
+            dist/Track-it-*-windows-x64.msi
+            dist/Track-it-*-windows-x64.msi.sha256
             dist/track-it-sbom.json

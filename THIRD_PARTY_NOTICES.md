@@ -8,5 +8,7 @@
 - PySide6/Qt is used under the LGPL/commercial dual-licensing framework. Users may replace the
   dynamically linked Qt libraries in source/standalone distributions; Qt notices remain required.
 - PyTorch, PyAV, NumPy, SciPy, Pillow, and other dependencies retain their respective licenses.
-- PyAV interfaces with FFmpeg. FFmpeg is external and its license/configuration depends on the
-  detected distributor build; Track it does not imply all FFmpeg builds have identical terms.
+- The Windows MSI bundles the pinned BtbN FFmpeg 8.1 shared LGPL build recorded in
+  `scripts/build_windows_msi.ps1`. Its license is bundled with the application and copied to
+  `third_party/licenses/FFmpeg-LICENSE.txt`. Source installs may use another FFmpeg distribution,
+  whose configuration and license can differ.

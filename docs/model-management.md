@@ -1,6 +1,7 @@
 # Model management
 
-Weights are external and downloaded only by explicit action. Downloads use HTTPS, resumable
-`.partial` files, a file lock, byte progress, minimum-size validation, SHA-256 recording, and
-atomic replacement. CPU or under 4 GB selects Tiny; 4–9 GB Small; 10–15 GB Base+; 16 GB or more
-Large. An 8 GB device never holds SAM 2 and optional Cutie simultaneously.
+Weights are external. The first press of **Create green screen** downloads the verified 176 MB
+SAM 2.1 Small checkpoint after the UI discloses this first-run requirement. Downloads use HTTPS,
+resumable `.partial` files, a file lock, exact byte bounds, a pinned SHA-256 digest, and atomic
+replacement. Later runs verify and reuse the local checkpoint. CUDA is used when the active
+PyTorch runtime supports it; otherwise processing runs on CPU.

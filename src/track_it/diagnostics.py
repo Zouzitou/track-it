@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import json
 import platform
-import shutil
 import subprocess
 from typing import Any
 
@@ -10,14 +9,26 @@ import psutil
 import torch
 
 from track_it.constants import ASSET_ROOT
+from track_it.media.ffmpeg import find_ffmpeg
 
 
 def collect_diagnostics(*, redact: bool = True) -> str:
-    ffmpeg = shutil.which("ffmpeg")
+    ffmpeg = find_ffmpeg()[0]
     ffmpeg_line = "not found"
     if ffmpeg:
-        result = subprocess.run([ffmpeg, "-version"], capture_output=True, text=True, check=False)
-        ffmpeg_line = result.stdout.splitlines()[0] if result.stdout else "found"
+        try:
+            result = subprocess.run(
+                [ffmpeg, "-version"],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                timeout=10,
+                check=False,
+            )
+            ffmpeg_line = result.stdout.splitlines()[0] if result.stdout else "found"
+        except subprocess.TimeoutExpired:
+            ffmpeg_line = "timed out"
     data: dict[str, Any] = {
         "platform": platform.platform(),
         "python": platform.python_version(),
@@ -56,7 +67,7 @@ def self_test() -> tuple[bool, list[str]]:
             results.append(f"FAIL CUDA autocast: {exc}")
     else:
         results.append("SKIP CUDA autocast: CUDA is unavailable to PyTorch")
-    ffmpeg = shutil.which("ffmpeg")
+    ffmpeg = find_ffmpeg()[0]
     ok &= ffmpeg is not None
     results.append("PASS FFmpeg found" if ffmpeg else "FAIL FFmpeg not found")
     assets = [

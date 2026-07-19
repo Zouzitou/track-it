@@ -1,14 +1,25 @@
-name: Windows portable
+name: Windows MSI
 on: {workflow_dispatch: {}, push: {tags: ['v*']}}
 permissions: {contents: read}
 jobs:
   build:
     runs-on: windows-latest
+    timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
-        with: {python-version: '3.11'}
-      - run: uv sync --extra dev --locked
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+      - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
+        with: {python-version: '3.11', enable-cache: false}
       - run: ./scripts/build_windows.ps1
-      - uses: actions/upload-artifact@v4
-        with: {name: TrackIt-windows-x64, path: 'dist/TrackIt-windows-x64.zip*'}
+      - name: Test packaged MSI
+        shell: pwsh
+        run: |
+          $msi = Get-ChildItem dist/Track-it-*-windows-x64.msi | Select-Object -First 1
+          if (-not $msi) { throw "Built MSI was not found" }
+          ./scripts/test_windows_msi.ps1 -MsiPath $msi.FullName -RegisteredCycle
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: Track-it-windows-x64-msi
+          path: |
+            dist/Track-it-*-windows-x64.msi
+            dist/Track-it-*-windows-x64.msi.sha256
+          if-no-files-found: error

@@ -160,4 +160,20 @@ class ThemeManager(QObject):
         QListWidget, QTreeView {{ background: {c["surface-1"]}; border: none; }}
         QLabel#secondary {{ color: {c["text-secondary"]}; }}
         QLabel#panelTitle {{ font-size: 18px; font-weight: 600; }}
+        QLabel#brandTitle {{ font-size: 28px; font-weight: 700; }}
+        QLabel#finePrint {{ color: {c["text-secondary"]}; font-size: 12px; }}
+        QLabel#statusText {{ font-size: 14px; font-weight: 500; }}
+        QLabel#privacyPill {{ color: {c["success"]}; background: {c["surface-1"]}; border: 1px solid {c["divider"]}; border-radius: 13px; padding: 5px 10px; }}
+        QLabel#step, QLabel#activeStep, QLabel#completeStep {{ border-radius: 6px; padding: 8px 12px; font-weight: 600; }}
+        QLabel#step {{ color: {c["text-secondary"]}; background: {c["surface-1"]}; }}
+        QLabel#activeStep {{ color: {c["on-primary"]}; background: {c["primary"]}; }}
+        QLabel#completeStep {{ color: {c["success"]}; background: {c["surface-1"]}; }}
+        QFrame#previewCard, QFrame#controlCard {{ background: {c["surface-1"]}; border: 1px solid {c["divider"]}; border-radius: 12px; }}
+        QFrame#controlCard QLabel {{ background: transparent; border: none; }}
+        QPushButton#primaryButton {{ color: {c["on-primary"]}; background: {c["primary"]}; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; padding: 10px 16px; }}
+        QPushButton#primaryButton:hover {{ border: 2px solid {c["on-primary"]}; }}
+        QPushButton#primaryButton:disabled {{ color: {c["text-secondary"]}; background: {c["divider"]}; }}
+        QPushButton#secondaryButton {{ border-radius: 8px; font-weight: 600; }}
+        QProgressBar {{ background: {c["divider"]}; border: none; border-radius: 4px; min-height: 8px; max-height: 8px; }}
+        QProgressBar::chunk {{ background: {c["success"]}; border-radius: 4px; }}
         """

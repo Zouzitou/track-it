@@ -6,6 +6,7 @@
   "reviewed_direct_dependencies": [
     "PySide6", "torch", "torchvision", "numpy", "scipy", "Pillow", "av", "pydantic",
     "platformdirs", "httpx", "filelock", "psutil", "packaging", "huggingface-hub",
-    "safetensors", "einops", "hydra-core", "omegaconf", "tqdm", "zstandard", "xxhash", "rich"
+    "safetensors", "einops", "hydra-core", "omegaconf", "tqdm", "zstandard", "xxhash", "rich",
+    "sam-2", "pyinstaller"
   ]
 }

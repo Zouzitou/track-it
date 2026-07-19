@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 
 APP_NAME = "Track it"
@@ -9,5 +10,7 @@ MASK_CHUNK_SIZE = 32
 PROXY_MAX_SIDE = 1280
 PROXY_JPEG_QUALITY = 92
 PACKAGE_ROOT = Path(__file__).resolve().parent
-REPOSITORY_ROOT = PACKAGE_ROOT.parents[1]
+_BUNDLE_ROOT = getattr(sys, "_MEIPASS", None)
+REPOSITORY_ROOT = Path(_BUNDLE_ROOT) if _BUNDLE_ROOT else PACKAGE_ROOT.parents[1]
 ASSET_ROOT = REPOSITORY_ROOT / "assets"
+TOOLS_ROOT = REPOSITORY_ROOT / "tools"

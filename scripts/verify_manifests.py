@@ -58,6 +58,7 @@ def main() -> int:
         ROOT / "assets/fonts/OFL-HostGrotesk.txt",
         ROOT / "assets/fonts/OFL-JetBrainsMono.txt",
         ROOT / "third_party/licenses/Material-Symbols-LICENSE.txt",
+        ROOT / "third_party/licenses/FFmpeg-LICENSE.txt",
     ]
     missing = [str(path) for path in required if not path.exists() or not path.stat().st_size]
     if missing:

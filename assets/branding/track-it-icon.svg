@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Track it">
+  <rect x="8" y="8" width="240" height="240" rx="52" fill="#11151b" stroke="#303846" stroke-width="8"/>
+  <path d="M77 64H58v38M179 64h19v38M77 192H58v-38M179 192h19v-38" fill="none" stroke="#6d87ff" stroke-width="13" stroke-linecap="round"/>
+  <path d="M111 92l57 36-57 36z" fill="#f2f5f8"/>
+  <path d="M47 116v24" stroke="#ff8278" stroke-width="9" stroke-linecap="round"/>
+  <path d="M209 116v24" stroke="#43ceba" stroke-width="9" stroke-linecap="round"/>
+</svg>

@@ -18,7 +18,7 @@ jobs:
         run: |
           $msi = Get-ChildItem dist/Track-it-*-windows-x64.msi | Select-Object -First 1
           if (-not $msi) { throw "Built MSI was not found" }
-          ./scripts/test_windows_msi.ps1 -MsiPath $msi.FullName
+          ./scripts/test_windows_msi.ps1 -MsiPath $msi.FullName -RegisteredCycle
       - uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # v3
         with:
           prerelease: true

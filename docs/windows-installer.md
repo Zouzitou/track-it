@@ -25,6 +25,10 @@ uses Windows system services and caches; run it in a disposable Windows VM when 
 strict no-C:-data policy. Use that VM for registered install/repair/upgrade/uninstall acceptance as
 well.
 
+Pass `-RegisteredCycle` in that disposable environment to verify a quiet per-machine install,
+repair, uninstall, all-users Start Menu shortcut, Add/Remove Programs entry, and user-data
+preservation. CI enables this switch on its disposable Windows runner.
+
 ## Release checklist
 
 1. Run source tests, manifest verification, and dependency audit.
